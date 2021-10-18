@@ -31,6 +31,13 @@ public class UserRegistrationImpl {
         return matcher.matches();
     }
 
+    public boolean validateMobileNumber(String mobileNumber) {
+        String regex = "^(91)[0-9]{10}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        return matcher.matches();
+    }
+
     public void validateUserDetails() {
         Scanner scanner = new Scanner(System.in);
         UserRegistrationDetails userRegistrationDetails = new UserRegistrationDetails();
@@ -65,6 +72,17 @@ public class UserRegistrationImpl {
         } else {
             System.out.println("Invalid E-mail input");
         }
+
+        System.out.println("Enter your mobile number: ");
+        userRegistrationDetails.setMobileNumber(scanner.next());
+
+        boolean flagMobileNumber = userRegistration.validateMobileNumber(userRegistrationDetails.getMobileNumber());
+        if (flagMobileNumber) {
+            System.out.println("Valid mobile number input");
+        } else {
+            System.out.println("Invalid mobile number input");
+        }
     }
 }
+
 

@@ -4,6 +4,7 @@ public class UserRegistrationDetails {
     String firstName;
     String lastName;
     String eMail;
+    String mobileNumber;
 
 
     public String getFirstName() {
@@ -28,5 +29,13 @@ public class UserRegistrationDetails {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 }
