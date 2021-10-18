@@ -24,6 +24,13 @@ public class UserRegistrationImpl {
         return matcher.matches();
     }
 
+    public boolean validateMail(String eMail) {
+        String regex = "^([a-zA-z0-9-_+\\.]+)@([a-z0-9-]+)\\.([a-z,]{2,4})((\\.[a-z]{2,4})?)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(eMail);
+        return matcher.matches();
+    }
+
     public void validateUserDetails() {
         Scanner scanner = new Scanner(System.in);
         UserRegistrationDetails userRegistrationDetails = new UserRegistrationDetails();
@@ -47,6 +54,16 @@ public class UserRegistrationImpl {
             System.out.println("Valid input");
         } else {
             System.out.println("Invalid input");
+        }
+
+        System.out.println("Enter your Email-ID: ");
+        userRegistrationDetails.seteMail(scanner.next());
+
+        boolean flagMail = userRegistration.validateMail(userRegistrationDetails.geteMail());
+        if (flagMail) {
+            System.out.println("Valid E-mail input");
+        } else {
+            System.out.println("Invalid E-mail input");
         }
     }
 }
