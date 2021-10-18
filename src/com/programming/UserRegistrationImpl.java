@@ -38,6 +38,13 @@ public class UserRegistrationImpl {
         return matcher.matches();
     }
 
+    public boolean validatePassword(String password) {
+        String regex = "^[a-zA-z0-9]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
     public void validateUserDetails() {
         Scanner scanner = new Scanner(System.in);
         UserRegistrationDetails userRegistrationDetails = new UserRegistrationDetails();
@@ -81,6 +88,17 @@ public class UserRegistrationImpl {
             System.out.println("Valid mobile number input");
         } else {
             System.out.println("Invalid mobile number input");
+        }
+
+        System.out.println("Enter your password: ");
+        userRegistrationDetails.setPassword(scanner.next());
+
+        boolean flagPassword = userRegistration.validatePassword(userRegistrationDetails.getPassword());
+        if (flagPassword) {
+            System.out.println("Password meets condition");
+        }
+        else {
+            System.out.println("Password don't meet condition");
         }
     }
 }
