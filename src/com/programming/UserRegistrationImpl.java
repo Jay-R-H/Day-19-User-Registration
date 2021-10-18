@@ -1,5 +1,7 @@
 package com.programming;
 
+import com.programming.UserRegistrationDetails;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,14 +13,14 @@ public class UserRegistrationImpl {
      * The name should at-least contain 3 letters
      */
 
-    public boolean validateFirstName(String firstName) {
+    public boolean validateName(String Name) {
         String regexName = "^[A-Z]{1}[a-z]{2,}$";
         Pattern pattern = Pattern.compile(regexName);
 
-        if (firstName.isEmpty()) {
+        if (Name.isEmpty()) {
             return false;
         }
-        Matcher matcher = pattern.matcher(firstName);
+        Matcher matcher = pattern.matcher(Name);
         return matcher.matches();
     }
 
@@ -27,14 +29,25 @@ public class UserRegistrationImpl {
         UserRegistrationDetails userRegistrationDetails = new UserRegistrationDetails();
         UserRegistrationImpl userRegistration = new UserRegistrationImpl();
 
-        System.out.println("Enter your first name ");
+        System.out.println("Enter your first name: ");
         userRegistrationDetails.setFirstName(scanner.next());
 
-        boolean flag = userRegistration.validateFirstName(userRegistrationDetails.getFirstName());
-        if (flag == true) {
+        boolean flagFName = userRegistration.validateName(userRegistrationDetails.getFirstName());
+        if (flagFName) {
+            System.out.println("Valid input");
+        } else {
+            System.out.println("Invalid input");
+        }
+
+        System.out.println("Enter your last name: ");
+        userRegistrationDetails.setLastName(scanner.next());
+
+        boolean flagLName = userRegistration.validateName(userRegistrationDetails.getLastName());
+        if (flagLName) {
             System.out.println("Valid input");
         } else {
             System.out.println("Invalid input");
         }
     }
 }
+
